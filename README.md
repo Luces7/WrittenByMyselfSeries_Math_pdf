@@ -1,3 +1,3 @@
 # WrittenByMyselfSeries_Math_pdf
-距離位相は正規ハウスドルフである
+Episode 1:距離位相は正規ハウスドルフである
 
