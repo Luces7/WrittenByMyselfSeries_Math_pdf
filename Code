@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{luatexja}
+\usepackage{luatexja-ruby}
+\usepackage{geometry} 
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\setlength{\parindent}{0pt}
+\onehalfspacing 
+\geometry{
+	a4paper,
+	left=2cm,
+	right=2cm,
+	top=1.5cm,
+	bottom=1.5cm,
+}
+\begin{document}
+	\begin{center}
+		\Large{\textbf{距離空間は正規ハウスドルフ空間である}}\\
+		\normalsize{あまほし \quad 令和7年　\quad 大正114年}
+	\end{center}
+		\large
+		本記事は、勉強のノートとして自ら書かれたものである.以下の問題は内田伏一『集合と位相』のものである.引用する部分にはカギ括弧をくくった.\\
+本記事の議論を始める前に、その結論のための補題として扱われる問題を解いてみよう.\\
+
+「\textbf{問14.2}(P66):距離空間$(X,d)$において、$A、B$を互いに交わらない閉集合とすれば、互いに交わらない$(X,d)$の開集合$U、V$で$A\subset U$、$B\subset V$となるものが存在することを示せ.」\\
+			\textbf{証明}(自ら書き)：P202のヒントにより、$$「U=\{x\in X|d(x,A)<d(x,B)\}、V=\{x\in X|d(x,A)>d(x,B)\}」$$をとればよいということがわかる.したがって、次に証明すべきことは２つあり、それは:\textbf{①$\boldsymbol{U、V}$のいずれも開集合であること}と、\textbf{②$\boldsymbol{A、B}$はそれぞれ$\boldsymbol{U、V}$に含まれること}である.\\
+まず、①を証明する.$U$は$(X,d)$-開集合であることと、$U$の任意の点$y$は内点である、すなわち$\forall x\in U,\exists \delta >0,s.t.\forall y\in N(x,\delta),y \in U$ということと同値であり、しかし、$N(x,\delta)$は距離空間$(X,d)$におけるxの$\delta$-近傍である.$x$を固定する.そのとき、相応しい$\delta$を探し出せばよい.$\delta=\frac{d(x,B)-d(x,A)}{2}>0$をとれば、任意の$ y\in N(x,\delta)$に対し、$d(x,y)<\delta$であるので、$|d(x,C)-d(y,C)|<d(x,y),\forall C\subset X$という不等式により、$$d(y,A)-d(x,A)<d(x,y)<\delta かつ d(x,B)-d(y,B)<d(x,y)<\delta$$が満たされ、$d(y,A)<d(x,A)+\delta=\frac{d(x,B)+d(x,A)}{2}=d(x,B)-\delta<d(y,B)$が成り立つ.したがって$y\in U$である.Vの証明も同様である.\\
+次は②を証明する.任意の$x\in A$に対し、$A、B$は閉集合だから、$x$は$A$の触点かつ$B^{c}$の内点であり、$d(x,A)=0$かつ$d(x,B)>0$がわかる.したがって$d(x,A)<d(x,B)$が成り立ち、$x\in U$となり、$A\subset U$である.$V$の証明も同様である.\qed\\
+
+以上の証明を踏まえて、本記事のタイトルは以下のように証明する.\\
+
+「\textbf{問21.2}(P100):距離位相は常にハウスドルフの分離公理を満足し、かつ正規である.」\\
+		\textbf{証明}(自ら書き):「問14.2によって距離位相は常に正規であることがわかる」.したがって、距離位相は常にハウスドルフの分離公理をみたすことを証明すればよい.距離空間は$(X,d)$とし、距離位相を$\mathcal O_{d}$とする.$X$の相異なる2点$x_1,x_2$に対し、$\mathcal O_{d}$-開集合である開近傍$N(x_1,\delta_1),N(x_2,\delta_2)$、しかし$\delta_1+\delta_2<d(x_1,x_2)$をとれば、任意の$y\in N(x_1,\delta_1)$に対し、$d(x_1,y)<\delta_1<d(x_1,x_2)-\delta_2$であり、距離関数の定義より、$\delta_2<d(x_1,x_2)-d(x_1,y)\leq d(x_2,y)$であり、したがって$y \notin N(x_2,\delta_2)$がわかる；同様にして、任意の$y\in N(x_2,\delta_2)$に対し、$y \notin N(x_1,\delta_1)$がわかる.したがって$N(x_1,\delta_1)\cap N(x_2,\delta_2)=\varnothing$であり、$x_1\in N(x_1,\delta_1)$かつ$x_2\in N(x_2,\delta_2)$は自明である.\qed \\
+
+まとめると、距離位相は正規であり、ハウスドルフの分離公理を満足する.言い換えれば、距離空間は正規ハウスドルフ空間であることは明らかになった.「正規ハウスドルフ空間は常に正則空間である」から、距離位相は正則であることもわかる.
+\vfill
+\begin{center}
+\normalsize{自ら書きシリーズ―距離空間は正規ハウスドルフ空間である}
+\end{center}
+\end{document}
