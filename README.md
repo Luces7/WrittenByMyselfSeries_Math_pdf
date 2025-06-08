@@ -1,1 +1,2 @@
 # WrittenByMyselfSeries_1_pdf
+自ら書きシリーズ１：距離位相は正規ハウスドルフである
