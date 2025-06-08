@@ -1,2 +1,3 @@
 # WrittenByMyselfSeries_Math_pdf
 自ら書きシリーズ１：距離位相は正規ハウスドルフである
+自ら書きシリーズ２：縮小写像は連続写像である
