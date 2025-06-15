@@ -1,2 +1,2 @@
 # WrittenByMyselfSeries_Math_pdf
-自ら書きシリーズ２：縮小写像は連続写像である
+Episode 2:縮小写像は連続写像である
