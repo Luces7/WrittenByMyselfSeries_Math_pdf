@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{luatexja}
+\usepackage{luatexja-ruby}
+\usepackage{geometry} 
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\setlength{\parindent}{0pt}
+\onehalfspacing 
+\geometry{
+	a4paper,
+	left=2cm,
+	right=2cm,
+	top=1.5cm,
+	bottom=1.5cm,
+}
+\begin{document}
+	\begin{center}
+		\Large{\textbf{縮小写像は連続写像である}}\\
+		\normalsize{あまほし \quad 令和7年　\quad 大正114年}
+	\end{center}
+		\large
+		本記事は、勉強のノートとして自ら書かれたものである.以下の内容は内田伏一『集合と位相』のものである.引用する部分にはカギ括弧をくくった.\\
+		まず、縮小写像の定義を紹介する.\\
+
+		\textbf{定義}:$(X,d)$を距離空間とし、$f:X \rightarrow X$を写像とする.そのとき、
+		$$fは(X,d)の縮小写像である:\Longleftrightarrow \exists 0<c<1,s.t.\forall x,y\in X,d(f(x),f(y))\leq c\cdot d(x,y)$$
+		以上の定義によって、次の命題が示せる.\\
+
+		\textbf{命題}(P143):「縮小写像は明らかに連続写像である.」\\
+		\textbf{証明}(自ら書き):縮小写像$f$は、以上の定義から定める.$A\in \mathcal O_{d}、x\in f^{-1}(A)$とする.そのとき、$f(x)\in A$だから、$f(x)$は$A$の内点である.すなわち、
+		$$\forall x\in f^{-1}(A)、\exists \epsilon_0>0,s,t,N(f(x),\epsilon_0)\subset A$$
+		ということが成り立つ.$\epsilon_1=\frac{\epsilon_0}{c}>0$とおくと、任意の$y\in N(x,\epsilon_1)$に対し、縮小写像の定義より、
+		$$d(f(x),f(y))<c\cdot d(x,y)<c\cdot \epsilon_1=\epsilon_0$$
+ということが成り立つ.したがって$f(y)\in N(f(x),\epsilon_0)\subset A$、すなわち$y\in f^{-1}(A)$となる.まとめると、
+		$$\forall x\in f^{-1}(A),\exists \epsilon_1>0,s.t.N(x,\epsilon_1)\subset f^{-1}(A)$$
+によって、任意の$x\in f^{-1}(A)$に対し、$x$は内点であるから、$f^{-1}(A)\in \mathcal O_d$となり、縮小写像$f$は連続写像である.\qed \\
+		
+縮小写像は連続写像であることがわかるが、たいしたことではない結論である.そもそも縮小写像という定義は、縮小写像の原理のためである. したがって今回の記事は、位相についての知識よりLuaLaTeXを復習する意味合いがある.
+	
+\vfill
+\begin{center}
+\normalsize{自ら書きシリーズ― 縮小写像は連続写像である}
+\end{center}
+\end{document}
