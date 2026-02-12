@@ -18,27 +18,27 @@
 \begin{document}
 	\begin{center}
 		\Large{\textbf{閉集合の必要十分条件}}\\
-		\normalsize{あまほし\quad 令和7年\quad 大正114年}
+		\normalsize{天野ほしえ\quad 令和7年\quad 大正114年}
 	\end{center}
 		\large　本記事は、勉強のノートとして自ら書かれたものである.以下の内容は、和久井道久『代数トポロジーの基礎』と内田伏一『集合と位相』に関するものである.引用する部分にはカギ括弧をくくった.
 
-		本記事を書くきっかけは、和久井道久『代数トポロジーの基礎』の１４ページの一文である：
+		本記事を書くきっかけは、和久井道久『代数トポロジーの基礎』の14ページの一文である：
 
 		\textbf{「$X$の部分集合$C$が($X$,$\mathcal O_{d}$)における閉集合であることは、$C$の中の収束する任意の点列に対して、その極限は常に$C$に含まれることに同値である.」}
 
 		著者はこの文の証明をつけていないから、筆者は自らこの文を証明してみる.
 
-		\textbf{証明}(自ら書き):$\Longrightarrow$:$\lim \limits_{x \to \infty}x_{n}=x,x_{n}\in C$とする.そのとき、定義により、$\forall \epsilon>0,\exists n_{0} \in N,s.t.n >n_{0}\Rightarrow x_{n}\in N(x,\epsilon)$、しかし$N(x,\epsilon)$は点$x$における$\epsilon$-近傍であることがわかる. したがって$\forall \epsilon > 0,N(x,\epsilon)\cap C \neq \varnothing$であり、$x\in \overline{C},\overline{C}$は$C$の閉包であることが成り立つ.閉集合なので$\overline {C}=C$であるから、$x\in C$ということがわかる.
+		\textbf{証明}(自ら書き):$\Longrightarrow$:$\lim \limits_{x \to \infty}x_{n}=x,x_{n}\in C$とする.そのとき、定義により、$\forall \epsilon>0,\exists n_{0} \in N,s.t.n >n_{0}\Rightarrow x_{n}\in N(x,\epsilon)$、ただし、$N(x,\epsilon)$は点$x$における$\epsilon$-近傍であることがわかる. したがって$\forall \epsilon > 0,N(x,\epsilon)\cap C \neq \varnothing$であり、$x\in \overline{C},\overline{C}$は$C$の閉包であることが成り立つ.閉集合なので$\overline {C}=C$であるから、$x\in C$ということがわかる.
 
 		$\Longleftarrow$:$x\in \overline {C}$とする.定義により、$\forall \epsilon > 0,N(x,\epsilon)\cap C \neq \varnothing$であることがわかる.選択公理により、$\mathop{\Pi}\limits_{\epsilon\in R^{+}}N(x,\epsilon)\cap C\neq \varnothing$である.そのとき、$\epsilon=\frac{1}{k},k\in N^{+}$をとれば、$x_k \in N(x,\frac{1}{k})\cap C$をみたす点列$\{x_n\}$が選び出せる.すなわち点列$\{x_n\}$は、$x_n \in C$かつ$d(x_n,x)<\frac{1}{n}$をみたすものである.実数$\mathbb R$のもとにはさみうちの原理を用いると、$\lim\limits_{n\to \infty}d(x_n,x)=0$が成り立つので、$\lim\limits_{n\to \infty}x_n=x$ということがわかる.したがって$x\in C$であり、$C$とその閉包は全く同じものだから、$C$は閉集合である.\qed 
 
-		しかし、以上の証明は、距離位相に基づいたもののみである.一般的な位相に対して、集合が閉集合である必要十分条件は何だかと、内田伏一『集合と位相』８８ページの問１８．４が部分的に示してくれた:
+		しかし、以上の証明は、距離位相に基づいたもののみである.一般的な位相に対して、集合が閉集合である必要十分条件は何だかと、内田伏一『集合と位相』88ページの問18.4が部分的に示してくれた:
 
 		\textbf{「($X,\mathcal O$)を位相空間とする.$X$の部分集合$A$と$x$の点$X$について、$x\in \overline A$であるための必要十分条件は、($X,\mathcal O$)において点$x$に収束する$A$の有向点列が存在することであることを証明する.」}
 
 		著者は解答を簡単に書いていたけど、筆者は自らこの文の証明を書いてみる.
 
-		\textbf{証明}(自ら書き):$\Longrightarrow$:$x\in \overline {A}$とする.そのとき、$\forall N\in \mathfrak N(x),N\cap A\neq \varnothing$、しかし$\mathfrak N(x)$は$x$の近傍系である.選択公理により、$\mathop{\Pi}\limits_{N\in\mathfrak N(x)}(N\cap A)\neq \varnothing$であることがわかる.$N_1,N_2\in \mathfrak N(x),N_1\geq N_2\Longleftrightarrow N_1\subset N_2$と定義すれば、$N_1,N_2\in \mathfrak N(x)$に対して、$N_1\cap N_2\in \mathfrak N(x)$が$N_1\cap N_2\geq N_1$かつ$N_1\cap N_2\geq N_2$をみたすから、$\mathfrak N(x)$は有向集合である.したがって、$x_{N_k}\in N_k\cap A,N_{k+1}\geq N_k$をみたす点列$\{x_{N_k}\}$が選び出せる.$\forall N\in \mathfrak N(x),\exists N^{i}=N_{k_0}\in \mathfrak N(x)(N^{i}はNの内部である),s.t.N_k\geq N_{k_0}\Rightarrow N_k\subset N_{k_0}= N^{i}\subset N\Rightarrow x_{N_k}\in N$だから、$\lim\limits_{N_k\to \infty}x_{N_k}=x$がわかる.
+		\textbf{証明}(自ら書き):$\Longrightarrow$:$x\in \overline {A}$とする.そのとき、$\forall N\in \mathfrak N(x),N\cap A\neq \varnothing$、ただし$\mathfrak N(x)$は$x$の近傍系である.選択公理により、$\mathop{\Pi}\limits_{N\in\mathfrak N(x)}(N\cap A)\neq \varnothing$であることがわかる.$N_1,N_2\in \mathfrak N(x),N_1\geq N_2\Longleftrightarrow N_1\subset N_2$と定義すれば、$N_1,N_2\in \mathfrak N(x)$に対して、$N_1\cap N_2\in \mathfrak N(x)$が$N_1\cap N_2\geq N_1$かつ$N_1\cap N_2\geq N_2$をみたすから、$\mathfrak N(x)$は有向集合である.したがって、$x_{N_k}\in N_k\cap A,N_{k+1}\geq N_k$をみたす点列$\{x_{N_k}\}$が選び出せる.$\forall N\in \mathfrak N(x),\exists N^{i}=N_{k_0}\in \mathfrak N(x)(N^{i}はNの内部である),s.t.N_k\geq N_{k_0}\Rightarrow N_k\subset N_{k_0}= N^{i}\subset N\Rightarrow x_{N_k}\in N$だから、$\lim\limits_{N_k\to \infty}x_{N_k}=x$がわかる.
 
 		$\Longleftarrow$:Kは有向集合とする.$A$の有向点列$\{x_k\},k\in K$は$x$に収束するとすれば、$\forall N \in \mathfrak N(x),\exists k_0\in K,s.t.k \geq k_0\Rightarrow x_k\in N$ということが成り立つ.$x_k\in A$なので、$\forall N \in \mathfrak N(x),A\cap N\neq \varnothing$であり、$x$は$A$の触点である.すなわち$x\in \overline A$である.\qed
 
