@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{luatexja}
+\usepackage{luatexja-ruby}
+\usepackage{geometry} 
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\setlength{\parindent}{1em}
+\onehalfspacing 
+\geometry{
+	a4paper,
+	left=2cm,
+	right=2cm,
+	top=1.5cm,
+	bottom=3cm,
+}
+\begin{document}
+	\begin{center}
+		\Large{\textbf{有限部分集合$S$で生成された部分$k$代数$k[S]$についての話}}\\
+		\normalsize{天野ほしえ\quad 令和8年\quad 大正115年}
+	\end{center}
+		\large　(余談：久しぶり！この半年間、腹痛治療とゲームプレイの時間を除き、全ての時間は入学前の準備として代数学の教科書、特に赤雪江と青雪江をじっくり読んでいるから、それらの内容まとめから「自ら書きシリーズ」をよみがえらせたいと思う.さ、冒頭ナレーションから始めよう！)
+
+		本記事は、勉強ノートとして自ら作成した文章である.以下の内容は、雪江明彦『代数学2：環と体とガロア理論』に関するものである.引用した定理のところにはカギ括弧をくくった.
+
+		本記事は、青雪江の18-21ページの内容、主に$k$代数$A$の有限部分集合$S$で生成された$A$の部分$k$代数$k[S]$について補足説明をする.
+
+		まず、命題1.3.16の証明を少し説明する.
+
+		\textbf{命題1.3.16:} 「$(A,\phi)$は$k$代数、$a=(a_1,a_2,...,a_n)\in A^n$とする.そのとき、$k$準同型$\psi:k[x_1,x_2,...,x_n]\to A$で$\psi (x_i)=a_i(i=1,2,...,n)$であるものがただ１つある.」
+
+		\textbf{説明}(自ら書き):教科書の中で一意性の証明はきちんと書かれたから、ここで$\psi (x_i)=a_i(i=1,2,...,n)$をみたす$k$準同型$\psi$の導出過程だけ説明する.
+		$$\psi_1:k[x_1,x_2,...,x_n] \to A[x_1,x_2,...,x_n]$$
+		$$\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n} \mapsto \sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})x^{i_1}x^{i_2}...x^{i_n}$$ 
+		とし、
+		$$\psi_2:A[x_1,x_2,...,x_n] \to A$$
+		$$\sum_{i_1,i_2,...,i_n}a_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n} \mapsto \sum_{i_1,i_2,...,i_n}a_{i_1,i_2,...,i_n}a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}$$
+		とする.そのとき、$\psi_1,\psi_2$はそれぞれの環準同型であることがわかる(青雪江の命題1.2.22と命題1.3.14を参照してください).$\psi=\psi_2\circ\psi_1$を
+		$$\psi:k[x_1,x_2,...,x_n] \to A[x_1,x_2,...,x_n]\to A$$
+		$$\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n} \mapsto \sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})x^{i_1}x^{i_2}...x^{i_n}\mapsto \sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}$$
+		とする.そのとき、$\psi$は$\psi (x_i)=a_i(i=1,2,...,n)$をみたす；また、環準同型の合成は環準同型であるから、$\psi$も環準同型である.$k$から$k[x_1,x_2,...,x_n]$への包含写像を$\hookrightarrow$とおけば.$\psi\circ\hookrightarrow$は
+		$$\psi\circ\hookrightarrow:k\to k[x_1,x_2,...,x_n]\to A$$
+		$$k\mapsto k\mapsto \phi(k)$$
+		のような写像であるから、$\psi\circ\hookrightarrow=\phi$ということが成り立つ.$\hookrightarrow,\phi$は環準同型であるから、$\psi$は$k$準同型である.まとめると、$\psi$は$\psi (x_i)=a_i(i=1,2,...,n)$をみたす$k$準同型である.　\qed
+
+		次に、命題1.3.16を用いた、$k$代数$A$の有限部分集合$S$で生成された$A$の部分$k$代数$k[S]$についての命題1.3.20と系1.3.23の証明を解釈する.	
+		
+		教科書の中で$k[S]$の定義ははっきり書かれていないから、やはり$k[S]$の定義から始めたいと思う.$k[S]$の定義を書き換えてみれば:
+
+		\textbf{定義}(自ら書き):$k$を(単位元付き)環、$(A,\phi)$を$k$代数、$S=\{a_1,a_2,...,a_n\}\subset A$を有限部分部分集合とする.そのとき、$k[S]$を
+		$$k[S]=\{\sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}\in A|$$
+		$$S=\{a_1,a_2,...,a_n\}\subset A,\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n}\in k[x_1,x_2,...,x_n],(A,\phi)はk代数である\}$$
+		と定義する.
+
+		上の定義により、命題1.3.20の証明を書き換えることができる.また、系1.3.23の証明も明らかになる.
+
+		\textbf{命題1.3.20}:「上の状況で、次の(1),(2)が成り立つ.\\
+		(1)$k[S]$は$A$の部分$k$代数である.\\
+		(2)$C\subset A$が部分$k$代数で$S$を含めば、$k[S]\subset C$である.したがって、$k[S]$は$S$を含む$A$の最小の部分$k$代数である.」
+
+		\textbf{系1.3.23}:「$A$を$k$代数、$S=\{a_1,a_2,...,a_n\}\subset A$とする.そのとき、$\phi(x_i)=a_i(i=1,2,...,n)$となる$k$準同型$\phi:k[x_1,x_2,...,x_n]\to A$の像が$k[S]$である.」
+
+		\textbf{証明}(自ら書き):命題1.3.20の(1)の証明は、主に3つのポイントがある.\\
+		1つ目のポイントは、$k[S]$は環であることである.それはほぼ自明である.\\
+		2つ目のポイントは、$k$から$k[S]$への環準同型が存在することである.命題1.3.16により、$k$準同型$\psi_1:k[x_1,x_2,...,x_n]\to A$で、$\psi_1(x_i)=a_i(i=1,2,...,n)$であるものがただ1つある.それは
+
+		$$\psi_1:k[x_1,x_2,...,x_n]\to A$$
+		$$\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n} \mapsto\sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}$$
+
+		というものである.$k[S]$の定義より、$Im(\psi_1)=k[S]$、すなわち系1.3.23のことである.したがって、系1.3.23により、
+		$$\psi:k[x_1,x_2,...,x_n]\to k[S]$$
+		$$\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n} \mapsto\sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}$$
+
+		は全射な準同型であり、また、$k$から$k[x_1,x_2,...,x_n]$への包含写像$\hookrightarrow$も環準同型であるから、$\psi\circ\hookrightarrow$を
+		$$\psi\circ\hookrightarrow:k\to k[x_1,x_2,...,x_n]\to k[S]$$
+		$$k\mapsto k\mapsto \phi(k)$$
+
+		とおけば、$\psi\circ\hookrightarrow$は$k$から$k[S]$への環準同型であり、$\psi\circ\hookrightarrow=\phi$である.
+
+		3つ目のポイントは、$(k[S],\phi)$から$(A,\phi)$への単射な$k$準同型が存在することである.2つ目のポイントにより、$k[S]\subset A$ということがわかる.したがって、$k[S]$から$A$への包含写像は$(k[S],\phi)$から$(A,\phi)$への単射な$k$準同型である.
+
+		(2)の証明について、$(C,\gamma)$を$S$を含み、Aに含まれる$A$の部分$k$代数とする.命題1.3.16により、$k$準同型$\psi_2:k[x_1,x_2,...x_n]\to C$で$\psi_2(x_i)=a_i(i=1,2,...,n)$であるものがただ1つある.それは
+
+		$$\psi_2:k[x_1,x_2,...,x_n]\to C$$
+		$$\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n} \mapsto\sum_{i_1,i_2,...,i_n}\gamma(k_{i_1,i_2,...,i_n})a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}$$
+
+		というものである.$\psi^\prime=\hookrightarrow^{\prime}\circ\psi_2$とおく.ただし、$\hookrightarrow^{\prime}$は$C$から$A$への包含写像である.そのとき、$\psi^\prime$は$k[x_1,x_2,...,x_n]$から$A$への環準同型であり、$\psi^{\prime}\circ \hookrightarrow=\hookrightarrow^{\prime}\circ \psi_2\circ \hookrightarrow=\hookrightarrow^{\prime}\circ \gamma$、ただし、包含写像$\hookrightarrow$は$k$から$k[x_1,x_2,...,x_n]$への環準同型、$\hookrightarrow^{\prime}\circ \gamma$は$k$から$A$への環準同型であるから、$\psi^{\prime}$は$(k[x_1,x_2,...,x_n],\hookrightarrow)$から$(A,\hookrightarrow^{\prime}\circ \gamma)$への$k$準同型である.また、計算により、$\psi^{\prime}(x_i)=\psi_2(x_i)=a_i(i=1,2,...,n)$という等式も成り立つ.(1)の証明に出てきた$\psi_1$も$\psi_1(x_i)=a_i(i=1,2,...,n)$をみたす$k[x_1,x_2,...,x_n]$から$A$への$k$準同型であるから、命題1.3.16の一意性により、$\psi^{\prime}=\psi_1$、すなわち$\hookrightarrow^{\prime}\circ \psi_2=\psi_1$であることがわかる.したがって、任意の$\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n}\in k[x_1,x_2,...,x_n]$に対し、$\psi_1(\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n})=\sum_{i_1,i_2,...,i_n}\phi(k_{i_1,i_2,...,i_n})a_{1}^{i_1}a_{2}^{i_2}...a_{n}^{i_n}=\psi^{\prime}(\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n})=\psi_2(\sum_{i_1,i_2,...,i_n}k_{i_1,i_2,...,i_n}x^{i_1}x^{i_2}...x^{i_n})\in C$であり、$k[S]\subset C$である. \qed
+
+		最後に、命題1.3.20を用い、注1.3.22の(2)をもう少し説明する.
+	
+		\textbf{注1.3.22}(2):「任意の環は$\mathbb Z$代数とみなせるので、$A$が環で$S\subset A$が部分集合なら、$S$を含む最小の部分環が存在する.これも$S$で生成された部分環という.」
+
+		\textbf{説明}(自ら書き):命題1.3.20により、$\mathbb{Z}[S]$は$A$の部分$\mathbb Z$代数であり、$\mathbb{Z}[S]$は$A$の部分環である.$S$を含み、$A$に含まれる$A$の部分環$C$とおく.そのとき、$(C,\phi_C)$は$\mathbb Z$代数である.ただし、$\phi_C$は$\mathbb Z$から$C$への自然な準同型である.$C$から$A$への包含写像$\hookrightarrow$は単射な環準同型であるから、$\mathbb Z$代数$(A,\phi_A)$とおけば($\phi_A$は$\mathbb Z$から$A$への自然な準同型である)、$C$が$A$の部分$\mathbb Z$代数である.命題1.3.20の(2)より、:$\mathbb{Z}[S]\subset C$ということがわかる. \qed
+
+		まとめると、$k$代数と$k$準同型には様々な優れた性質があるので、青雪江の前置きとしてちょうど良いと思う.
+
+\end{document}
