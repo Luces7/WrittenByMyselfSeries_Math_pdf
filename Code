@@ -1,0 +1,397 @@
+\documentclass{article}
+\usepackage{luatexja}
+\usepackage{luatexja-ruby}
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=1.5cm,bottom=3cm}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{amsmath}
+\usepackage{amsthm}
+\newtheorem{lemma}{補題}
+\newtheorem{definition}{定義}
+\newtheorem{theorem}{定理}
+\newtheorem{example}{例}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{polynom}
+\setlength{\parindent}{1em}
+
+\begin{document}
+	\begin{center}
+		\Large{\textbf{3次方程式と4次方程式の解法}}\\
+		\normalsize{天野ほしえ\quad 令和8年\quad 大正115年}	
+	\end{center}
+	
+	\large 本記事は、勉強ノートとして自ら作成した文章である.
+
+	次数が$4$のモニック多項式(すなわち単多項式)$f(x)=x^{4}+a_{1}x^{3}+a_{2}x^{2}+a_{3}x+a_{4}\in\mathbb C[x]$とし、$4$次方程式を$f(x)=0$、すなわち$x^{4}+a_{1}x^{3}+a_{2}x^{2}+a_{3}x+a_{4}=0$とする.
+	
+	\begin{lemma}
+	\label{lem:1}
+	\textbf{代数学の基本定理}：任意の次数が$n$の$0$でない多項式$f(x)\in\mathbb C[x]$に対し、$f(x)$は$\mathbb C$において必ず$n$個の根を持つ.
+	\end{lemma}
+
+	補題\ref{lem:1}により、$f(x)$は$\mathbb C$の中で根が$4$つある.それらの根を$\alpha_1,\alpha_2,\alpha_3,\alpha_4$をする.そのとき、$x^{4}+a_{1}x^{3}+a_{2}x^{2}+a_{3}x+a_{4}=(x-\alpha_1)(x-\alpha_2)(x-\alpha_3)(x-\alpha_4)=0$により、
+
+	\begin{align*}
+	\label{equ:1}
+	a_1 &=-\mathop{\sum}\limits_{i=1}^{4}\alpha_i\\
+	a_2 &=\mathop{\sum}\limits_{1\leq i\leq j \leq 4}\alpha_{i}\alpha_{j}
+	\tag{1}\\
+	a_3 &=-\mathop{\sum}\limits_{1\leq i \leq j \leq 4}\alpha_{i}\alpha_{j}\alpha_{k}\\
+	a_4 &=\mathop{\prod}\limits_{i=1}^{4}\alpha_i
+	\end{align*}
+	という恒等式が成り立つ.
+
+	\begin{align*}
+	\tau_1:&=\alpha_1\alpha_2+\alpha_3\alpha_4\\
+	\tau_2:&=\alpha_1\alpha_3+\alpha_2\alpha_4
+	\tag{2}\\
+	\tau_3:&=\alpha_1\alpha_4+\alpha_2\alpha_3
+	\end{align*}
+	とおく.単多項式$g(x):=(x-\tau_1)(x-\tau_2)(x-\tau_3)\in\mathbb C[x]$を$g(x)=x^{3}+b_{1}x^{2}+b_{2}x+b_{3}$の形に書き換えると、(\ref{equ:1})を用いて計算した結果として、
+
+	\begin{align*}
+	\label{equ:2}
+	b_{1}&=-a_{2}\\
+	b_{2}&=a_{1}a_{3}-4a_{4}
+	\tag{3}\\
+	b_{3}&=-a_{1}^{2}a_{4}+4a_{2}a_{4}-a_{3}^{2}		
+	\end{align*}
+	という恒等式が成り立つ.そのもとで、分解方程式を定義する.
+	
+	\begin{definition}
+	\label{def:1}
+	$g(x)=x^{3}+b_{1}x^{2}+b_{2}x+b_{3}=0$を$4$次方程式$f(x)=x^{4}+a_{1}x^{3}+a_{2}x^{2}+a_{3}x+a_{4}=0$の\textbf{$\boldsymbol 3$次の分解方程式}という.
+	\end{definition}
+
+	これから$3$次方程式$g(x)=0$の解法を説明する.
+
+	補題\ref{lem:1}により、$g(x)$は$\mathbb C$の中で根が$3$つあるということもわかる.それらの根を$\tau_1,\tau_2,\tau_3$とする.そのとき、$x^{3}+b_{1}x^{2}+b_{2}x+b_{3}=(x-\tau_1)(x-\tau_2)(x-\tau_3)=0$により、
+
+	\begin{align*}
+	\label{equ:3}
+	b_1 &=-\mathop{\sum}\limits_{i=1}^{3}\tau_i\\
+	b_2 &=\mathop{\sum}\limits_{1\leq i\leq j\leq 3}\tau_{i}\tau_{j}
+	\tag{4}\\
+	b_3 &=-\mathop{\prod}\limits_{i=1}^{3}\tau_i
+	\end{align*}]
+
+	という恒等式も成り立つ.(\ref{equ:3})に現れた
+
+	\begin{equation*}
+	\label{equ:4}
+	-b_1=\tau_1+\tau_2+\tau_3
+	\tag{5}
+	\end{equation*}
+
+	という恒等式を特に取り上げたいと思う.
+
+	$\tau_1,\tau_2,\tau_3$を求めるためには、$1$の$3$乗根$\omega:=e^{\frac{2\pi}{3}i}$と、Vandermondeの行列式を用いる必要はあるから、$\omega$の性質とVandermondeの行列式の定義について少し説明する.
+
+	\begin{lemma}
+	\label{lem:2}
+	\textbf{Eulerの公式}：任意の$z\in\mathbb C$に対し、
+
+	$$e^{iz}=\cos z+i\sin z$$
+	が成り立つ.
+	\end{lemma}
+
+	補題\ref{lem:2}により、$1$の$3$乗根$\omega=e^{\frac{2\pi}{3}i}=\cos \frac{2\pi}{3}+i\sin \frac{2\pi}{3}=-\frac{1}{2}+\frac{\sqrt 3}{2}i$、$\omega^2=e^{\frac{4\pi}{3}i}=\cos \frac{4\pi}{3}+i\sin \frac{4\pi}{3}=-\frac{1}{2}-\frac{\sqrt 3}{2}i=\overline\omega$である.また、$\omega^{3}-1=(\omega-1)(\omega^2+\omega+1)=0$、$\omega-1\neq 0$かつ$\mathbb C$は整域であるから、$\omega^2+\omega+1=0$という恒等式も成り立つ.したがって、以下の定理が得られる.
+
+	\begin{theorem}
+	\label{the:1}
+	$\omega = e^{\frac{2\pi}{3}i}$ とする. そのとき、次のことが成り立つ:
+
+	\begin{enumerate}
+	\item $\displaystyle \omega^3=1$;
+	\item $\displaystyle \omega = -\frac{1}{2} + \frac{\sqrt{3}}{2}i$;
+	\item $\displaystyle \omega^2 = \overline{\omega}$
+	（ただし、$\overline\omega$ は $\omega$ の共役複素数である）;	
+	\item $\displaystyle \omega^2 + \omega + 1 = 0$.
+	\end{enumerate}
+	\end{theorem}
+
+	\begin{definition}
+	\label{def:2}
+	\[
+	\begin{vmatrix}
+	1 & 1 & \cdots & 1\\
+	x_1 & x_2 & \cdots & x_n \\
+	{x_1}^{2} & {x_2}^{2} & \cdots & {x_n}^{2}\\
+	\vdots & \vdots & \ddots & \vdots \\
+	{x_1}^{n-1} & {x_2}^{n-1} & \cdots & {x_n}^{n-1}
+	\end{vmatrix}
+	(=\mathop{\prod}\limits_{1\leq i<j\leq n}(x_j-x_i))
+	\]
+	のような行列式を\textbf{Vandermondeの行列式}という.
+	\end{definition}
+
+	Vandermondeの行列式について、ここで元々の行列の形が大切である.したがって、$u=\tau_1+\omega\tau_2+\omega^{2}\tau_3$、$v=\tau_1+\omega^{2}\tau_2+\omega\tau_3$とおけば、(\ref{equ:4})により、
+
+	\[
+	\label{equ:5}
+	\begin{pmatrix}
+	u \\
+	v \\
+	-b_1
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	1 & \omega & \omega^2 \\
+	1 & \omega^2 & \omega \\
+	1 & 1 & 1 
+	\end{pmatrix}
+	\begin{pmatrix}
+	\tau_1\\
+	\tau_2\\
+	\tau_3
+	\end{pmatrix}
+	\tag{6}
+	\]
+	という等式が成り立つ.定理\ref{the:1}の$1$と定義\ref{def:2}により、
+	
+	\[
+	\begin{vmatrix}
+	1 & \omega & \omega^2 \\
+	1 & \omega^2 & \omega \\
+	1 & 1 & 1 
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+	1 & \omega & \omega^2 \\
+	1 & \omega^2 & \omega^4 \\
+	1 & 1 & 1 
+	\end{vmatrix}
+	\]
+	はVandermondeの行列式であり、$1,\omega,\omega^2$は相異なる元である.また、
+	\[
+	\begin{vmatrix}
+	1 & \omega & \omega^2 \\
+	1 & \omega^2 & \omega \\
+	1 & 1 & 1 
+	\end{vmatrix}
+	=(\omega-1)(\omega^2-1)(\omega^2-\omega)\neq 0
+	\]
+
+	であるから、行列
+	$
+	\begin{pmatrix}
+	1 & \omega & \omega^2 \\
+	1 & \omega^2 & \omega \\
+	1 & 1 & 1 
+	\end{pmatrix}
+	$
+	は正則行列である.Cramerの公式により、その逆行列は
+	$\frac{1}{3}
+	\begin{pmatrix}
+	1 & 1 & 1 \\
+	\omega^2 & \omega & 1\\
+	\omega & \omega^2 & 1 
+	\end{pmatrix}
+	$
+	であることが直ちにわかる.したがって、左側から(\ref{equ:5})の両辺に逆行列を掛けると、
+
+	\[
+	\label{equ:6}
+	\begin{pmatrix}
+	\tau_1\\
+	\tau_2\\
+	\tau_3
+	\end{pmatrix}
+	=
+	\frac{1}{3}
+	\begin{pmatrix}
+	1 & 1 & 1 \\
+	\omega^2 & \omega & 1\\
+	\omega & \omega^2 & 1 
+	\end{pmatrix}
+	\begin{pmatrix}
+	u \\
+	v \\
+	-b_1
+	\end{pmatrix}
+	\tag{7}
+	\]
+	という等式が成り立つ.この等式が$3$次方程式の解を求めるポイントである.もし$u,v$が求められれば、$3$次方程式$g(x)=0$の解も(\ref{equ:6})よりわかる.したがってこれから$u,v$を求めようと思う.
+
+	定理\ref{the:1}と(\ref{equ:3})を用いて計算した結果として、$u^3+v^3=-27g(-\frac{b_1}{3})=-2{b_1}^{3}+9b_{1}b_{2}-27b_3$であり、$uv={b_1}^{2}-3b_2$である.$\boldsymbol{c_1=27g(-\frac{b_1}{3})=2{b_1}^{3}-9b_{1}b_{2}+27b_3}$、$\boldsymbol{c_2={({b_1}^{2}-3b_2)}^3}$とおけば、$u^3,v^3$は$2$次方程式$x^2+c_{1}x+c_2=0$の解である.
+
+	\begin{definition}
+	\label{def:3}
+	上の条件のもとで、$2$次方程式$x^2+c_{1}x+c_2=0$を$3$次方程式$g(x)=x^{3}+b_{1}x^{2}+b_{2}x+b_{3}=0$の\textbf{$\boldsymbol2$次の分解方程式}という.
+	\end{definition}
+
+	定義\ref{def:3}の分解方程式の解を求めれば、$u,v$が求められる.$2$次方程式の解の公式により、$u^3=\frac{-c_{1}+\sqrt{{c_1}^{2}-4c_{2}}}{2}$、$v^3=\frac{-c_{1}-\sqrt{{c_1}^{2}-4c_{2}}}{2}$とおけば、
+
+	\begin{align*}
+	\label{equ:7}
+	u =\sqrt[3]{\frac{-c_{1}+\sqrt{{c_1}^{2}-4c_{2}}}{2}},\quad v =\sqrt[3]{\frac{-c_{1}-\sqrt{{c_1}^{2}-4c_{2}}}{2}}
+	\tag{8}
+	\end{align*}
+	という結果が得られる.(\ref{equ:7})を(\ref{equ:6})に代入すると、
+
+	\begin{align*}
+	\label{equ:8}
+	\tau_1 &=\frac{1}{3}(u+v-b_1)\\
+	&=\frac{1}{3}(\sqrt[3]{\frac{-c_{1}+\sqrt{{c_1}^{2}-4c_{2}}}{2}}+\sqrt[3]{\frac{-c_{1}-\sqrt{{c_1}^{2}-4c_{2}}}{2}}-b_1)\\
+	\tau_2 &=\frac{1}{3}(\omega^{2}u+\omega v-b_1)\\
+	&=\frac{1}{3}[(\frac{-1-\sqrt{3}i}{2})\sqrt[3]{\frac{-c_{1}+\sqrt{{c_1}^{2}-4c_{2}}}{2}}+(\frac{-1+\sqrt{3}i}{2})\sqrt[3]{\frac{-c_{1}-\sqrt{{c_1}^{2}-4c_{2}}}{2}}-b_1]
+	\tag{9}\\
+	\tau_3 &=\frac{1}{3}(\omega u+\omega^{2} v-b_1)\\
+	&=\frac{1}{3}[(\frac{-1+\sqrt{3}i}{2})\sqrt[3]{\frac{-c_{1}+\sqrt{{c_1}^{2}-4c_{2}}}{2}}+(\frac{-1-\sqrt{3}i}{2})\sqrt[3]{\frac{-c_{1}-\sqrt{{c_1}^{2}-4c_{2}}}{2}}-b_1]
+	\end{align*}
+	という$3$次方程式$g(x)=0$の解を求めた.
+
+	上の$3$次方程式の解法を用いて、$4$次方程式の$3$次の分解方程式の解が求められるから、これから$3$次の分解方程式の解に基づいて$4$次方程式の解法を説明する.
+
+	$t_1=\alpha_1+\alpha_2$、$s_1=\alpha_3+\alpha_4$とおく.計算により、$t_1+s_1=\alpha_1+\alpha_2+\alpha_3+\alpha_4=-a_1$であり、$t_{1}s_{1}=\alpha_{1}\alpha_{3}+\alpha_{2}\alpha_{4}+\alpha_{1}\alpha_{4}+\alpha_{2}\alpha_{3}=\tau_{2}+\tau_{3}$であることがわかる.したがって、$t_1,s_1$は$2$次方程式$x^2+a_{1}x+(\tau_2+\tau_3)=0$の解である.そのとき、$t_1=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}}{2}$、$s_1=\frac{-a_{1}-\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}}{2}$とおけばよい.
+
+	全く同様に、
+	$
+	\begin{cases}
+	t_2&=\alpha_1+\alpha_3\\
+	s_2&=\alpha_2+\alpha_4
+	\end{cases}
+	$
+	、
+	$
+	\begin{cases}
+	t_3&=\alpha_1+\alpha_4\\
+	s_3&=\alpha_2+\alpha_3
+	\end{cases}
+	$
+	とおけば、
+
+	$$
+	\begin{cases}
+	t_2&=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}}{2}\\
+	s_2&=\frac{-a_{1}-\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}}{2}
+	\end{cases}
+	,
+	\begin{cases}
+	t_3&=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{2}\\
+	s_3&=\frac{-a_{1}-\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{2}
+	\end{cases}
+	$$
+	という結果も得られる.それらの結果を連立方程式
+	
+	$$
+	\begin{cases}
+	\alpha_{1}+\alpha_{2}=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}}{2}\\
+	\alpha_{1}+\alpha_{3}=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}}{2}\\
+	\alpha_{1}+\alpha_{4}=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{2}\\
+	\alpha_1+\alpha_2+\alpha_3+\alpha_4 =-a_1
+	\end{cases}
+	$$
+	に書き換えると、
+
+	\[
+	\label{equ:9}
+	\begin{pmatrix}
+	1 & 1 & 0 & 0\\
+	1 & 0 & 1 & 0\\
+	1 & 0 & 0 & 1\\
+	1 & 1 & 1 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+	\alpha_1\\
+	\alpha_2\\
+	\alpha_3\\
+	\alpha_4
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}}{2}\\
+	\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}}{2}\\
+	\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{2}\\
+	-a_1
+	\end{pmatrix}
+	\tag{10}
+	\]
+	という等式が成り立つ.行列の行基本変形により、
+	$
+	\begin{pmatrix}
+	1 & 1 & 0 & 0\\
+	1 & 0 & 1 & 0\\
+	1 & 0 & 0 & 1\\
+	1 & 1 & 1 & 1
+	\end{pmatrix}
+	$
+	の逆行列は
+	$$
+	\frac{1}{2}
+	\begin{pmatrix}
+	1 & 1 & 1 & -1\\
+	1 & -1 & -1 & 1\\
+	-1 & 1 & -1 & 1\\
+	-1 & -1 & 1 & 1
+	\end{pmatrix}
+	$$
+	であるから、左側から(\ref{equ:9})の両辺にこの逆行列を掛けると、
+
+	\[
+	\label{equ:10}
+	\begin{pmatrix}
+	\alpha_1\\
+	\alpha_2\\
+	\alpha_3\\
+	\alpha_4
+	\end{pmatrix}
+	=
+	\frac{1}{2}
+	\begin{pmatrix}
+	1 & 1 & 1 & -1\\
+	1 & -1 & -1 & 1\\
+	-1 & 1 & -1 & 1\\
+	-1 & -1 & 1 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+	\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}}{2}\\
+	\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}}{2}\\
+	\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{2}\\
+	-a_1
+	\end{pmatrix}
+	\tag{11}
+	\]
+	であり、(\ref{equ:10})の右辺を計算した結果として、$4$次方程式$f(x)=0$の解は
+
+	\begin{align*}
+	\label{equ:11}
+	\alpha_1 &=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{4}\\
+	\alpha_2 &=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}-\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}-\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{4}
+	\tag{12}\\
+	\alpha_3 &=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}-\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}-\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}}{4}\\
+	\alpha_4 &=\frac{-a_{1}+\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{2})}-\sqrt{{a_1}^{2}-4(\tau_{1}+\tau_{3})}-\sqrt{{a_1}^{2}-4(\tau_{2}+\tau_{3})}}{4}
+	\end{align*}
+	である.
+	
+	以上、$3$次方程式と$4$次方程式の解法を説明した.これから具体例を挙げる.
+
+	\begin{example}
+	$3$次方程式$x^3-6x+9=0$の解を求めよ.
+		\begin{proof}
+		1:$f(x)=x^3-6x+9$とし、$a_1=0,a_2=-6,a_3=9$とする.そのとき、$c_1=27f(-\frac{a_1}{3})=27f(0)=243$であり、$c_2={({a_1}^2-3a_2)}^{3}=18^3=5832$である.分解方程式$x^2+c_{1}x+c_2=x^2+243x+5832=0$の解を$u^3,v^3$とおけば、$u^3=\frac{-243+\sqrt{243^{2}-4\cdot 5832}}{2}=-27$、$v^3=\frac{-243-\sqrt{243^{2}-4\cdot 5832}}{2}=-216$であり、$u=-3,v=-6$である.(\ref{equ:6})により、$\tau_1=\frac{1}{3}(u+v-a_1)=\frac{1}{3}(-3-6)=-3$、$\tau_2 =\frac{1}{3}(\omega^{2}u+\omega v-a_1)=\frac{1}{3}[(-3)(\frac{-1-\sqrt{3}i}{2})+(-6)(\frac{-1+\sqrt{3}i}{2})]=\frac{3-\sqrt{3}i}{2}$、$\tau_3 =\frac{1}{3}(\omega u+\omega^{2} v-a_1)=\frac{1}{3}[(-3)(\frac{-1+\sqrt{3}i}{2})+(-6)(\frac{-1-\sqrt{3}i}{2})]=\frac{3+\sqrt{3}i}{2}$である.それらは$x^3-6x+9=0$の解である.
+		\end{proof}
+
+		\begin{proof}
+		2:$f(x)=x^3-6x+9\in \mathbb Z[x]$であるから、もし$f(x)$が$\mathbb Q$における根が存在すれば、それは$\pm\frac{9}{1},\pm\frac{3}{1},\pm\frac{1}{1}$の中の$1$つである.$1$つずつ代入してみれば、$-3$が$f(x)$の$1$つの根であることがわかる.したがって、$x+3\mid f(x)$ということも成り立つ.多項式の割り算
+
+		\[
+		\polylongdiv{x^3-6x+9}{x+3}
+		\]
+		により、$f(x)=x^3-6x+9=(x+3)(x^2-3x+3)$である.$\mathbb Z[x]$は整域であるから、$x^3-6x+9=0$ということは、$x+3=0$または$x^2-3x+3=0$であることと同値である.したがって、これから$x^2-3x+3=0$の解を求めればよい.
+		\end{proof}
+	\end{example}
+	
+	\begin{example}
+	$4$次方程式$x^4-5x^2+4=0$の解を求めよ.
+		\begin{proof}
+		1.$f(x)=x^4-5x^2+4$とし、$a_1=0,a_2=-5,a_3=0,a_4=4$とする.(\ref{equ:2})により、$b_1=5,b_2=-16,b_3=-80$である.したがって、$4$次方程式$f(x)=0$の$3$次の分解方程式は$g(x)=x^{3}+b_{1}x^{2}+b_{2}x+b_{3}=x^3+5x^2-16x-80=0$というものである.(\ref{equ:8})により、その解$-5,-4,4$が求められる.$\tau_1=-5,\tau_2=-4,\tau_3=4$とおけばよい.(\ref{equ:11})により、$\alpha_1=2,\alpha_2=-2,\alpha_3=-1,\alpha_4=1$である.それらは$4$次方程式$x^4-5x^2+4=0$の解である.
+		\end{proof}
+		\begin{proof}
+		2.$f(x)=x^4-5x^2+4\in \mathbb Z[x]$であるから、もし$f(x)$が$\mathbb Q$における根が存在すれば、それは$\pm\frac{4}{1},\pm\frac{2}{1},\pm\frac{1}{1}$の中の$1$つである.$1$つずつ代入してみれば、$\pm 2,\pm 1$が$f(x)$の根であることがわかる.補題\ref{lem:1}により、それらは$f(x)$の$\mathbb C$における全ての根、すなわち方程式$f(x)=x^4-5x^2+4=0$の全ての解である.
+		\end{proof}
+	\end{example}
+	まとめると、実際には、$Proof.2$という解法がよく用いられるが、やはり本文の解法を備えとして覚えておいたほうが良い.
+\end{document} 
